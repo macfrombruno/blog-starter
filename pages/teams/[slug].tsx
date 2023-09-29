@@ -18,7 +18,7 @@ type Props = {
   preview?: boolean;
 };
 
-export default function Post({ post, morePosts, preview }: Props) {
+export default function Team({ post, morePosts, preview }: Props) {
   const router = useRouter();
   const title = `${post.title} | Next.js Blog Example with ${CMS_NAME}`;
   if (!router.isFallback && !post?.slug) {
@@ -33,6 +33,7 @@ export default function Post({ post, morePosts, preview }: Props) {
         ) : (
           <>
             <article className="mb-32">
+              aaaa
               <Head>
                 <title>{title}</title>
                 <meta property="og:image" content={post.ogImage.url} />
@@ -62,7 +63,7 @@ export async function getStaticProps({ params }: Params) {
   const post = getPostBySlug(
     params.slug,
     ["title", "date", "slug", "author", "content", "ogImage", "coverImage"],
-    "_posts",
+    "_teams",
   );
   const content = await markdownToHtml(post.content || "");
 
@@ -77,7 +78,7 @@ export async function getStaticProps({ params }: Params) {
 }
 
 export async function getStaticPaths() {
-  const posts = getAllPosts(["slug"], "_posts");
+  const posts = getAllPosts(["slug"], "_teams");
 
   return {
     paths: posts.map((post) => {
